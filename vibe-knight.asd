@@ -5,7 +5,10 @@
   :license "GPL-3"
   :depends-on (:sdl2)
   :serial t
-  :components ((:file "src/sdl2-wrapper")
+  :components (
+    (:file "src/package")
+
+    (:file "src/sdl2-wrapper")
                (:file "src/map-generator")
                (:file "src/player")
                (:file "src/enemy")
