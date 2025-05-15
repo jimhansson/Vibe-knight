@@ -10,9 +10,9 @@ A 2D roguelike game in Common Lisp using SDL2, inspired by Zelda 3.
 
 ## Build and Run
 
-1. **Install SDL2 and Lisp dependencies:**
+1. **Install SDL2, SBCL, and Lisp dependencies:**
    ```bash
-   sudo apt-get install libsdl2-dev
+   sudo apt-get install sbcl libsdl2-dev
    # Install Quicklisp if you don't have it
    # Download and install sdl2 bindings for Common Lisp
    (ql:quickload :sdl2)
