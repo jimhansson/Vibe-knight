@@ -1,0 +1,13 @@
+;;;; vibe-knight.asd
+(defsystem "vibe-knight"
+  :description "2D roguelike i Lisp med SDL2"
+  :author "Ditt Namn"
+  :license "GPL-3"
+  :depends-on (:sdl2)
+  :serial t
+  :components ((:file "src/sdl2-wrapper")
+               (:file "src/map-generator")
+               (:file "src/player")
+               (:file "src/enemy")
+               (:file "src/game")
+               (:file "src/main")))
