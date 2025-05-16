@@ -1,0 +1,11 @@
+* 2025
+** May
+*** 2025-05-16
+- Project development log started in org-mode.
+- Planned: graph algorithms for objectives, build improvements, and documentation conversion.
+
+# Template for future entries:
+# * YEAR
+# ** MONTH
+# *** YYYY-MM-DD
+# - Notes...

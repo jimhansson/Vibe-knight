@@ -13,4 +13,5 @@
                (:file "src/player")
                (:file "src/enemy")
                (:file "src/game")
+               (:file "src/objectives-graph")
                (:file "src/main")))
