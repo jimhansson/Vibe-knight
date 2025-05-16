@@ -6,6 +6,7 @@
 
 (ql:quickload :asdf)
 (push (truename ".") asdf:*central-registry*)
+#+asdf (pushnew (truename "./src") asdf:*central-registry*)
 (ql:quickload :vibe-knight)
 
 (sb-ext:save-lisp-and-die "vibe-knight"
