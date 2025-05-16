@@ -1,8 +1,13 @@
 * 2025
 ** May
+*** 2025-05-15
+- Project started. This project will be developed primarily with the assistance of AI tools and automation.
 *** 2025-05-16
-- Project development log started in org-mode.
-- Planned: graph algorithms for objectives, build improvements, and documentation conversion.
+- Improved test and build system: exported test symbols, added src to ASDF registry, and updated Makefile for reliable test runs.
+- Added and refactored wave function collapse algorithm for biomes in world.lisp, including support for weighted biomes and flexible neighborhood functions.
+- Added unit tests for neighbors-4 and neighbors-8 using the Prove framework, and created a Makefile test target.
+- Fixed issues with package visibility and local system loading for both build and test workflows.
+- Committed and pushed all changes to version control.
 
 # Template for future entries:
 # * YEAR
