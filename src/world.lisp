@@ -38,20 +38,19 @@
             (when (< (1+ y) h) (list x (1+ y)))))))
 
 (defun neighbors-8 (grid x y)
-  "Return the coordinates of the 8-neighbors of cell (x, y) in the grid."
+  "Return the coordinates of the 8-neighbors of cell (x, y) in the grid. Only valid, in-bounds neighbors are returned."
   (let ((w (array-dimension grid 0))
-        (h (array-dimension grid 1)))
-    (remove-if-not #'identity
-      (list
-        (when (and (> x 0) (> y 0)) (list (1- x) (1- y)))         ; upper left
-        (when (> y 0) (list x (1- y)))                           ; up
-        (when (< (1+ x) w) (> y 0) (list (1+ x) (1- y)))         ; upper right
-        (when (> x 0) (list (1- x) y))                           ; left
-        (when (< (1+ x) w) (list (1+ x) y))                      ; right
-        (when (> x 0) (< (1+ y) h) (list (1- x) (1+ y)))         ; lower left
-        (when (< (1+ y) h) (list x (1+ y)))                      ; down
-        (when (< (1+ x) w) (< (1+ y) h) (list (1+ x) (1+ y)))    ; lower right
-      ))))
+        (h (array-dimension grid 1))
+        (neighbors '()))
+    (dolist (dx '(-1 0 1))
+      (dolist (dy '(-1 0 1))
+        (unless (and (= dx 0) (= dy 0))
+          (let ((nx (+ x dx))
+                (ny (+ y dy)))
+            (when (and (>= nx 0) (< nx w)
+                       (>= ny 0) (< ny h))
+              (push (list nx ny) neighbors))))))
+    (nreverse neighbors)))
 
 (defun weighted-random-choice (items weights)
   "Choose a random item from ITEMS according to WEIGHTS (alist of item . weight)."
