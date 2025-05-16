@@ -30,6 +30,11 @@ A 2D roguelike game in Common Lisp using SDL2, inspired by Zelda 3.
    # This creates an executable named 'vibe-knight' in the project folder
    ./vibe-knight
    #+END_SRC
+4. Run tests (no SDL2 required):
+   #+BEGIN_SRC sh
+   make test
+   #+END_SRC
+   This will run all unit tests, loading all necessary files. SDL2 is not required for running tests.
 
 * Using Roswell for Common Lisp Development
 Roswell is a command-line launcher and environment manager for Common Lisp. It makes it easy to install, switch, and run different Lisp implementations, manage scripts, and set up development environments.

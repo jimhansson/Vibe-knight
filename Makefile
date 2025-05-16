@@ -17,4 +17,8 @@ install-deps:
 	bash install-cl-sdl2.sh
 
 test:
-	ASDF_OUTPUT_TRANSLATIONS="/:$(PWD)/:/src:$(PWD)/src" sbcl --load ~/quicklisp/setup.lisp --eval '(ql:quickload :prove)' --load src/package.lisp --load src/world-test.lisp --quit
+	@if command -v ros >/dev/null 2>&1; then \
+	  ros run --eval '(ql:quickload :prove)' --load src/package.lisp --load src/world.lisp --load src/world-test.lisp --quit; \
+	else \
+	  sbcl --load ~/quicklisp/setup.lisp --eval '(ql:quickload :prove)' --load src/package.lisp --load src/world.lisp --load src/world-test.lisp --quit; \
+	fi
