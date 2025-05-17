@@ -8,7 +8,14 @@
 - Added unit tests for neighbors-4 and neighbors-8 using the Prove framework, and created a Makefile test target.
 - Fixed issues with package visibility and local system loading for both build and test workflows.
 - Committed and pushed all changes to version control.
-
+*** 2025-05-17
+  - Refactored and significantly generalized the wave function collapse (WFC) logic:
+  - Moved all WFC-related code to a new file (`src/wfc.lisp`), making it a standalone, reusable module.
+  - Made the WFC API fully generic: no more biome-specific logic; all constraint logic is user-supplied.
+  - Added general neighbor functions: `neighbors-4` and `neighbors-8` for flexible adjacency.
+  - Allowed user-supplied collapse and propagation functions via `:collapse-fn` and `:propagate-fn`.
+  - Added support for hooks: `:on-collapse`, `:on-propagate`, and `:on-contradiction` for extensibility and debugging.
+  
 # Template for future entries:
 # * YEAR
 # ** MONTH
