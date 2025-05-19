@@ -25,7 +25,13 @@ using AI-assisted programming in the Vibe Knight project.
 
 - that above was written by AI, now to my views
 
-- starting to see where AI have problems. when the project gets bigger and we
+- Looking at the AI-written reflections above, it is clear it does not do any
+  evaluation of the points it lists. For example, the thing about asserts was
+  applied to only one function; it was so minor and did not really matter. I
+  also don't agree with the propagation of changes point; it was one of the
+  things I find it does not do consistently.
+
+- Starting to see where AI have problems. when the project gets bigger and we
   start to split the code into more than one file, it starts having problem
   knowing how to call things in other files and the one I am currently viewing.
   so it just makes up functions and forgets to update structures and other
@@ -35,8 +41,19 @@ using AI-assisted programming in the Vibe Knight project.
   arguments that it uses to affect the rest of the program. In C something
   similar can be used.
 
-- just had a hard time getting to add a section to the readme without deleting
-  everything else in the file. small things like that comes up daily and is
-  really annoying. it really stops the flow you get sometimes.
+- In one way you could say that AI forces you to modularize your code into
+  loosely coupled parts. That is often a good thing, but sometimes it might not
+  be what you want. For example, game programming might want to couple some
+  things really tightly because of performance reasons.
+
+- Just had a hard time getting to add a section to the README without deleting
+  everything else in the file. Small things like that come up daily and are
+  really annoying. It really stops the flow you get sometimes.
+
+- I have been using the AI to do the commits and git commands. I like the
+  summaries and sometimes it really speeds up some things where I need to do a
+  series of more complex things than add, commit. BUT sometimes it misses files
+  that should have been added and just does a lot of word salad where the
+  important thing is hidden in stuff that is not so important.
 
 # Add new reflections below as the project evolves.
