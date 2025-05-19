@@ -15,6 +15,12 @@
   - Added general neighbor functions: `neighbors-4` and `neighbors-8` for flexible adjacency.
   - Allowed user-supplied collapse and propagation functions via `:collapse-fn` and `:propagate-fn`.
   - Added support for hooks: `:on-collapse`, `:on-propagate`, and `:on-contradiction` for extensibility and debugging.
+*** 2025-05-19
+- Moved all player-related logic (struct and movement) from world.lisp to player.lisp for better separation of concerns.
+- Merged player struct fields into a single struct, including scene and tile coordinates for world navigation.
+- Set default values so the player starts in the middle of the world grid by default.
+- Added a make-player function for convenient player creation at the world center.
+- world.lisp now only contains world/scene/tile logic, improving code organization.
   
 # Template for future entries:
 # * YEAR

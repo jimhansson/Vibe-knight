@@ -1,0 +1,42 @@
+* Reflections on AI Programming
+
+This file is for developer reflections, lessons learned, and thoughts about
+using AI-assisted programming in the Vibe Knight project.
+
+** 2025-05-19
+- The process of modularizing the world and player logic with AI assistance was
+  efficient and led to a cleaner codebase.
+- AI helped quickly generalize the WFC algorithm and world structure, saving
+  time on boilerplate and error-prone refactoring.
+- The iterative, conversational workflow with the AI made it easy to clarify
+  requirements and get code tailored to the project’s needs.
+- Using AI for code review and design suggestions highlighted best practices and
+  helped avoid common pitfalls (e.g., separation of concerns, struct merging).
+- The AI’s ability to generate documentation and diary entries as part of the
+  workflow improved project traceability and onboarding.
+- Decided to use a 7x7 scene grid for the world to allow a true center starting
+  position for the player, simplifying logic and making the design more elegant.
+- The AI-assisted workflow made it easy to refactor the world and player code,
+  and to propagate this change through all relevant files and documentation.
+- Using assert for bounds checking in navigation functions improved error
+  reporting and debugging.
+- The modular approach (separating player, world, and rendering logic)
+  continues to pay off in maintainability and clarity.
+
+- that above was written by AI, now to my views
+
+- starting to see where AI have problems. when the project gets bigger and we
+  start to split the code into more than one file, it starts having problem
+  knowing how to call things in other files and the one I am currently viewing.
+  so it just makes up functions and forgets to update structures and other
+  stuff in other files. One way to get around this is to let the files you are
+  currently working in define the interface it uses to affect the rest of the
+  program. In lisp this is simple by letting everything take functions as
+  arguments that it uses to affect the rest of the program. In C something
+  similar can be used.
+
+- just had a hard time getting to add a section to the readme without deleting
+  everything else in the file. small things like that comes up daily and is
+  really annoying. it really stops the flow you get sometimes.
+
+# Add new reflections below as the project evolves.
