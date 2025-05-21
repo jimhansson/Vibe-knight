@@ -21,7 +21,14 @@
 - Set default values so the player starts in the middle of the world grid by default.
 - Added a make-player function for convenient player creation at the world center.
 - world.lisp now only contains world/scene/tile logic, improving code organization.
-  
+*** 2025-05-21
+- today it is not working at all,
+  trying to get it refactor the WFC code but it does not really
+  understand what I want. might be because I am asking for
+  something it might not have seen combination of.
+- for some reason it also break lines at 40 characters for some reason today.
+- It gets boring quickly when it does not work.
+
 # Template for future entries:
 # * YEAR
 # ** MONTH
