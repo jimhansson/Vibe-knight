@@ -4,8 +4,8 @@
   x
   y
   hp
-  (scene-x (floor (/ *scenes-x* 2)) :type fixnum)
-  (scene-y (floor (/ *scenes-y* 2)) :type fixnum)
+  (scene-x 3 :type fixnum) ; Center of 7x7 grid
+  (scene-y 3 :type fixnum)
   (tile-x (floor (/ *scene-tiles-x* 2)) :type fixnum)
   (tile-y (floor (/ *scene-tiles-y* 2)) :type fixnum))
 
@@ -36,8 +36,8 @@
 
 (defun make-player (&key (x 0) (y 0) (hp 100))
   "Create a player starting in the middle of the world grid."
-  (let* ((scene-x (floor (/ *scenes-x* 2)))
-         (scene-y (floor (/ *scenes-y* 2)))
+  (let* ((scene-x 3)
+         (scene-y 3)
          (tile-x (floor (/ *scene-tiles-x* 2)))
          (tile-y (floor (/ *scene-tiles-y* 2))))
     (make-player :x x :y y :hp hp

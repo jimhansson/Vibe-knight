@@ -56,4 +56,7 @@ using AI-assisted programming in the Vibe Knight project.
   that should have been added and just does a lot of word salad where the
   important thing is hidden in stuff that is not so important.
 
-# Add new reflections below as the project evolves.
+- One thing that AI lets me do is to be on a higher level in my thoughts, just
+  like LISP compared to C allows me to work on a higher level more of the time.
+  This is both good and bad; it sometimes leads me to miss important details,
+  but also allows for greater speed instead.
