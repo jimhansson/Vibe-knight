@@ -28,6 +28,10 @@
   something it might not have seen combination of.
 - for some reason it also break lines at 40 characters for some reason today.
 - It gets boring quickly when it does not work.
+*** 2025-05-22
+- Played around with git-bug as a tool to track issues in the project. GPT-4.1
+  eventually learned how to use it, but it took about four tries before it
+  found the right commands and syntax for logging and syncing issues.
 
 # Template for future entries:
 # * YEAR
