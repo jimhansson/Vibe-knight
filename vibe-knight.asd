@@ -3,7 +3,7 @@
   :description "2D roguelike i Lisp med SDL2"
   :author "Jim Hansson"
   :license "GPL-3"
-  :depends-on (:sdl2)
+  :depends-on (:sdl2 :verbose)
   :serial t
   :components (
     (:file "src/package")

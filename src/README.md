@@ -21,3 +21,9 @@ The world in Vibe Knight is a large, grid-based map designed for classic top-dow
 - Player position is tracked by scene and tile coordinates for efficient navigation and rendering.
 
 This structure allows for efficient streaming, procedural generation, and classic adventure game design patterns.
+
+## Coding Standards
+
+- All debug and informational logging should use the [verbose](https://github.com/Shinmera/verbose) library, imported with a local-nickname `:v` in each package (see `defpackage`).
+- Use `v:log` for all logging instead of `format` or other ad-hoc print statements.
+- This ensures consistent, configurable, and concise logging throughout the codebase.
