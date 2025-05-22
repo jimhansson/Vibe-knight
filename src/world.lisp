@@ -26,8 +26,6 @@
    navigated and rendered as a collection of interconnected scenes."
   (scenes (make-array (list *scenes-x* *scenes-y*) :element-type 'scene)))
 
-;; Player navigation logic moved to player.lisp for separation of concerns.
-
 (defun get-current-scene (world player)
   (let* ((x (player-scene-x player))
          (y (player-scene-y player))
@@ -45,23 +43,25 @@
     (aref (world-scenes world) x y)))
 
 (defun render-scene (scene draw-tile-fn)
-  "Render all tiles in the scene using draw-tile-fn, which takes (tile x y).
-   The draw-tile-fn function should return nil and handle any errors internally 
-   to ensure rendering continues without interruption."
+  "Render all tiles in the scene using draw-tile-fn, which takes (tile x y px py).
+   The draw-tile-fn function should return nil and handle any errors internally
+   to ensure rendering continues without interruption. px/py are pixel coords."
   (dotimes (x *scene-tiles-x*)
     (dotimes (y *scene-tiles-y*)
-      (let ((tile (aref (scene-tiles scene) x y)))
-        (when tile)))))
-        
+      (let ((tile (aref (scene-tiles scene) x y))
+            (px (* x *tile-width*))
+            (py (* y *tile-height*)))
+        (when tile
+          (funcall draw-tile-fn tile x y px py)))))
+  nil)
+
 ;; Example draw-tile-fn (this is a placeholder; replace with your actual graphics rendering code)
-;; (defun draw-tile (tile x y)
-;;   (let ((px (* x *tile-width*))
-;;         (py (* y *tile-height*)))
-;;     ;; Replace the following line with actual rendering logic, e.g., using a graphics library.
-;;     ;; (sdl2:draw-image tile px py)
-;;     ))
-;;     ;; (sdl2:draw-image tile px py)
-;;     ))
+(defun draw-tile (tile x y px py)
+  "Draw a tile as a filled rectangle at the given pixel coordinates using SDL2."
+  ;; Replace this with your actual SDL2 rectangle drawing call.
+  ;; Example: (draw-rect px py *tile-width* *tile-height* :color (tile-color tile))
+  (format t "[SDL2] Drawing rectangle for tile ~A at (~A,~A) [pixels: ~A,~A]~%"
+          tile x y px py))
 
 ;; Example usage:
 ;; (defparameter *my-world* (make-world))

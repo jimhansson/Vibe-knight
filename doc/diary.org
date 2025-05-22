@@ -32,6 +32,15 @@
 - Played around with git-bug as a tool to track issues in the project. GPT-4.1
   eventually learned how to use it, but it took about four tries before it
   found the right commands and syntax for logging and syncing issues.
+- Used Copilot to create 5 bugs in git-bug based on its own list of suggested
+  next steps for the project. This was a quick way to turn a development plan
+  into actionable issues, and it worked smoothly once the right commands were
+  found. This workflow helps keep track of progress and priorities directly in
+  the repo.
+- Decided to use a "working" label in git-bug to indicate issues that are
+  currently in progress, since git-bug only supports open/closed statuses by
+  default. Added the label to the rendering issue as the first use of this
+  convention.
 
 # Template for future entries:
 # * YEAR
