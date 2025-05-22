@@ -5,7 +5,7 @@
 all: build
 
 build:
-	sbcl --script build.lisp
+	VERBOSE_ASYNC=0 sbcl --no-userinit --no-sysinit --script build.lisp
 
 run:
 	./vibe-knight

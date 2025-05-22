@@ -41,6 +41,13 @@
   currently in progress, since git-bug only supports open/closed statuses by
   default. Added the label to the rendering issue as the first use of this
   convention.
+*** 2025-05-23
+- Spent most of the day troubleshooting SBCL's "Cannot save core with multiple threads running" error caused by the verbose logging library's background thread.
+- Verified that setting VERBOSE_ASYNC=0 in the shell, Makefile, and Lisp code does not always prevent the thread from starting if the environment variable is not set early enough.
+- Explored and tested various approaches: setting the environment variable in different places, using (org.shirakumo.verbose:remove-global-controller), and calling (v:stop) before save-lisp-and-die.
+- Updated all logging in main.lisp to use (v:debug :main ...) for structured, category-aware logging.
+- Confirmed that listing threads with (sb-thread:list-all-threads) is useful for debugging thread state before saving the core image.
+- The build process is now more robust, but the verbose async thread remains a tricky issue for SBCL image saving. Documented all findings and workarounds in the code and project notes.
 
 # Template for future entries:
 # * YEAR
