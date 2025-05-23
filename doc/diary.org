@@ -1,52 +1,72 @@
 * 2025
 ** May
 *** 2025-05-15
-- Project started. This project will be developed primarily with the assistance of AI tools and automation.
+- Project started. This project will be developed primarily with the assistance 
+  of AI tools and automation.
 *** 2025-05-16
-- Improved test and build system: exported test symbols, added src to ASDF registry, and updated Makefile for reliable test runs.
-- Added and refactored wave function collapse algorithm for biomes in world.lisp, including support for weighted biomes and flexible neighborhood functions.
-- Added unit tests for neighbors-4 and neighbors-8 using the Prove framework, and created a Makefile test target.
-- Fixed issues with package visibility and local system loading for both build and test workflows.
+- Improved test and build system: exported test symbols, added src to ASDF 
+  registry, and updated Makefile for reliable test runs.
+- Added and refactored wave function collapse algorithm for biomes in world.lisp, 
+  including support for weighted biomes and flexible neighborhood functions.
+- Added unit tests for neighbors-4 and neighbors-8 using the Prove framework, 
+  and created a Makefile test target.
+- Fixed issues with package visibility and local system loading for both build 
+  and test workflows.
 - Committed and pushed all changes to version control.
 *** 2025-05-17
   - Refactored and significantly generalized the wave function collapse (WFC) logic:
-  - Moved all WFC-related code to a new file (`src/wfc.lisp`), making it a standalone, reusable module.
-  - Made the WFC API fully generic: no more biome-specific logic; all constraint logic is user-supplied.
-  - Added general neighbor functions: `neighbors-4` and `neighbors-8` for flexible adjacency.
-  - Allowed user-supplied collapse and propagation functions via `:collapse-fn` and `:propagate-fn`.
-  - Added support for hooks: `:on-collapse`, `:on-propagate`, and `:on-contradiction` for extensibility and debugging.
+    - Moved all WFC-related code to a new file (`src/wfc.lisp`), making it a 
+      standalone, reusable module.
+    - Made the WFC API fully generic: no more biome-specific logic; all constraint 
+      logic is user-supplied.
+    - Added general neighbor functions: `neighbors-4` and `neighbors-8` for 
+      flexible adjacency.
+    - Allowed user-supplied collapse and propagation functions via `:collapse-fn` 
+      and `:propagate-fn`.
+    - Added support for hooks: `:on-collapse`, `:on-propagate`, and 
+      `:on-contradiction` for extensibility and debugging.
 *** 2025-05-19
-- Moved all player-related logic (struct and movement) from world.lisp to player.lisp for better separation of concerns.
-- Merged player struct fields into a single struct, including scene and tile coordinates for world navigation.
-- Set default values so the player starts in the middle of the world grid by default.
+- Moved all player-related logic (struct and movement) from world.lisp to 
+  player.lisp for better separation of concerns.
+- Merged player struct fields into a single struct, including scene and tile 
+  coordinates for world navigation.
+- Set default values so the player starts in the middle of the world grid 
+  by default.
 - Added a make-player function for convenient player creation at the world center.
 - world.lisp now only contains world/scene/tile logic, improving code organization.
 *** 2025-05-21
-- today it is not working at all,
-  trying to get it refactor the WFC code but it does not really
-  understand what I want. might be because I am asking for
+- today it is not working at all, trying to get it refactor the WFC code but 
+  it does not really understand what I want. might be because I am asking for 
   something it might not have seen combination of.
 - for some reason it also break lines at 40 characters for some reason today.
 - It gets boring quickly when it does not work.
 *** 2025-05-22
-- Played around with git-bug as a tool to track issues in the project. GPT-4.1
-  eventually learned how to use it, but it took about four tries before it
+- Played around with git-bug as a tool to track issues in the project. GPT-4.1 
+  eventually learned how to use it, but it took about four tries before it 
   found the right commands and syntax for logging and syncing issues.
-- Used Copilot to create 5 bugs in git-bug based on its own list of suggested
-  next steps for the project. This was a quick way to turn a development plan
-  into actionable issues, and it worked smoothly once the right commands were
-  found. This workflow helps keep track of progress and priorities directly in
-  the repo.
-- Decided to use a "working" label in git-bug to indicate issues that are
-  currently in progress, since git-bug only supports open/closed statuses by
-  default. Added the label to the rendering issue as the first use of this
+- Used Copilot to create 5 bugs in git-bug based on its own list of suggested 
+  next steps for the project. This was a quick way to turn a development plan 
+  into actionable issues, and it worked smoothly once the right commands were 
+  found. This workflow helps keep track of progress and priorities directly 
+  in the repo.
+- Decided to use a "working" label in git-bug to indicate issues that are 
+  currently in progress, since git-bug only supports open/closed statuses by 
+  default. Added the label to the rendering issue as the first use of this 
   convention.
 *** 2025-05-23
 - Continued refining the project's development workflow and code structure.
 - Explored various AI coding assistants and their integration with the project.
-- Focused on improving code modularity, particularly in the Wave Function Collapse (WFC) implementation.
-- Investigated logging and thread management challenges in SBCL, particularly around core image saving.
-- Maintained a systematic approach to code organization, separating concerns across different source files.
+- Focused on improving code modularity, particularly in the Wave Function 
+  Collapse (WFC) implementation.
+- Investigated logging and thread management challenges in SBCL, particularly 
+  around core image saving.
+- Maintained a systematic approach to code organization, separating concerns 
+  across different source files.
+- Successfully built and ran the Vibe Knight game with SDL2 graphics and basic rendering:
+  - Confirmed game functionality with SDL2 integration
+  - Verified basic game rendering and core mechanics
+  - Completed initial milestone of game engine implementation
+  - Next steps: enhance game mechanics, add more complex rendering, and expand game world
 
 # Template for future entries:
 # * YEAR

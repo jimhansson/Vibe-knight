@@ -10,34 +10,52 @@ A 2D roguelike game in Common Lisp using SDL2, inspired by Zelda 3.
 - `vibe-knight.asd` – ASDF system file
 - `build.lisp` – script to build an executable
 
+## Project Status
+As of May 23, 2025:
+- Basic game engine implemented
+- SDL2 graphics integration complete
+- Basic rendering functional
+- Wave Function Collapse (WFC) algorithm for world generation implemented
+- Modular code structure with separated concerns
+
 ## Build and Run
 
 1. **Install SDL2, SBCL, and Lisp dependencies:**
-   ```bash
-   sudo apt-get install sbcl libsdl2-dev
-   # Install Quicklisp if you don't have it
-   # Download and install sdl2 bindings for Common Lisp
-   (ql:quickload :sdl2)
-   ```
+    ```bash
+    sudo apt-get install sbcl libsdl2-dev
+    # Install Quicklisp if you don't have it
+    # Download and install sdl2 bindings for Common Lisp
+    (ql:quickload :sdl2)
+    ```
 
 2. **Run the game directly in Lisp:**
-   ```lisp
-   (asdf:load-system :vibe-knight)
-   (vibe-knight:main)
-   ```
+    ```lisp
+    (asdf:load-system :vibe-knight)
+    (vibe-knight:main)
+    ```
 
 3. **Build a standalone executable with SBCL:**
-   ```bash
-   sbcl --script build.lisp
-   # This creates an executable named 'vibe-knight' in the project folder
-   ./vibe-knight
-   ```
+    ```bash
+    sbcl --script build.lisp
+    # This creates an executable named 'vibe-knight' in the project folder
+    ./vibe-knight
+    ```
 
 4. **Run tests (no SDL2 required):**
-   ```bash
-   make test
-   ```
-   This will run all unit tests, loading all necessary files. SDL2 is not required for running tests.
+    ```bash
+    make test
+    ```
+    This will run all unit tests, loading all necessary files. SDL2 is not required for running tests.
+
+5. **Verify Game Functionality:**
+    - Confirm SDL2 window opens
+    - Check basic player movement
+    - Validate world generation using Wave Function Collapse algorithm
+
+## Troubleshooting
+- Ensure all dependencies are correctly installed
+- Check SDL2 bindings are properly loaded
+- Verify SBCL version compatibility
 
 ## Using Roswell for Common Lisp Development
 
