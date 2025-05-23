@@ -1,6 +1,7 @@
 ;;;; package.lisp
 (defpackage :vibe-knight
-  (:use :cl)
+  (:use :cl :sdl2)
+  (:local-nicknames (:v :org.shirakumo.verbose))
   (:export :main
            :make-initial-grid
            :neighbors-4

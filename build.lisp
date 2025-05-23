@@ -9,13 +9,19 @@
 (ql:quickload :vibe-knight)
 
 
-  ;; setup verbose in a state that will allow use to save the image.
+  ;; Explicitly stop verbose threads
   (ql:quickload :verbose)
   (org.shirakumo.verbose:remove-global-controller)
 
-;; these 2 lines are needed for some reason because else the verbose thread will still be running.
-  (sb-thread:list-all-threads)
-  (mapcar #'sb-thread:thread-name (sb-thread:list-all-threads))
+  ;; Simplified thread management
+  (handler-case
+      (progn
+        (when (fboundp 'sb-thread:list-all-threads)
+          (dolist (thread (sb-thread:list-all-threads))
+            (when (and (not (eq thread sb-thread:*current-thread*))
+                       (not (string= (sb-thread:thread-name thread) "main thread")))
+              (sb-thread:terminate-thread thread)))))
+    (error () nil))
 
 (sb-ext:save-lisp-and-die "vibe-knight"
   :toplevel #'vibe-knight:main
