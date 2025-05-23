@@ -94,18 +94,43 @@
               unless (cell-collapsed-value (get-cell grid x y))
               collect (list x y))))
 
-(defun min-entropy (grid coords)
-  "Return the minimum entropy (fewest possible values) among the given coords in the grid."
-  (apply #'min (mapcar (lambda (coord)
-                         (length (cell-possible-values (get-cell grid (first coord) (second coord)))))
-                       coords)))
-
 (defun min-entropy-candidates (grid coords)
-  "Return the list of coords with the minimum entropy in the grid."
-  (let* ((min-e (min-entropy grid coords)))
-    (remove-if-not (lambda (coord)
-                     (= (length (cell-possible-values (get-cell grid (first coord) (second coord)))) min-e))
-                   coords)))
+  "Return the list of coords with the minimum entropy in the grid (optimized single pass)."
+  (when coords
+    (let ((min-entropy most-positive-fixnum)
+          (candidates '()))
+      (dolist (coord coords)
+        (let ((entropy (length (cell-possible-values
+                               (get-cell grid (first coord) (second coord))))))
+          (cond ((< entropy min-entropy)
+                 (setf min-entropy entropy
+                       candidates (list coord)))
+                ((= entropy min-entropy)
+                 (push coord candidates)))))
+      candidates)))
+
+(defun copy-grid (grid)
+  "Create a deep copy of the grid for backtracking."
+  (let* ((width (array-dimension grid 0))
+         (height (array-dimension grid 1))
+         (new-grid (make-array (list width height))))
+    (dotimes (x width)
+      (dotimes (y height)
+        (let ((cell (get-cell grid x y)))
+          (setf (aref new-grid x y)
+                (make-cell :possible-values (copy-list (cell-possible-values cell))
+                           :collapsed-value (cell-collapsed-value cell))))))
+    new-grid))
+
+(defun grid-complete-p (grid)
+  "Check if all cells in the grid are collapsed."
+  (let ((width (array-dimension grid 0))
+        (height (array-dimension grid 1)))
+    (loop for x below width do
+      (loop for y below height do
+        (unless (cell-collapsed-value (get-cell grid x y))
+          (return-from grid-complete-p nil))))
+    t))
 
 ;; Default collapse and propagate functions for user override
 (defun default-collapse-cell (cell weights)
@@ -114,32 +139,41 @@
 (defun default-propagate (grid x y &key neighbor-fn remove-fn)
   (propagate grid x y :neighbor-fn neighbor-fn :remove-fn remove-fn))
 
-(defun wave-function-collapse (grid remove-fn &key weights  
+(defun wave-function-collapse (grid remove-fn &key weights
                                          (neighbor-fn #'neighbors-4)
                                          (collapse-fn #'default-collapse-cell)
                                          (propagate-fn #'default-propagate)
+                                         (max-attempts 10)
                                          on-collapse on-propagate on-contradiction)
-  "General wave function collapse algorithm with hooks. The user must provide the grid and a mandatory remove-fn for constraint logic. At each step, pick the uncollapsed cell with the fewest possible values (lowest entropy), breaking ties randomly. Collapse and propagation can be customized. Hooks: on-collapse, on-propagate, on-contradiction."
-  (let ((width (array-dimension grid 0))
-        (height (array-dimension grid 1)))
-    (loop repeat (* width height)
-          do (let* ((uncollapsed (uncollapsed-cells grid width height)))
-               (when (null uncollapsed) (return))
-               (let* ((candidates (min-entropy-candidates grid uncollapsed))
-                      (chosen (nth (random (length candidates)) candidates))
-                      (x (first chosen))
-                      (y (second chosen))
-                      (cell (get-cell grid x y)))
-                 (let ((collapsed-value (funcall collapse-fn cell weights)))
-                   (when on-collapse (funcall on-collapse grid x y cell collapsed-value)))
-                 (let ((contradiction (and (null (cell-collapsed-value cell))
-                                          (= (length (cell-possible-values cell)) 0))))
-                   (when (and contradiction on-contradiction)
-                     (funcall on-contradiction grid x y cell)))
-                 (funcall propagate-fn grid x y :neighbor-fn neighbor-fn :remove-fn remove-fn)
-                 (when on-propagate (funcall on-propagate grid x y cell)))))
-    grid)
-)
+  "General wave function collapse algorithm with backtracking. The user must provide the grid and a mandatory remove-fn for constraint logic. At each step, pick the uncollapsed cell with the fewest possible values (lowest entropy), breaking ties randomly. Collapse and propagation can be customized. Hooks: on-collapse, on-propagate, on-contradiction. Includes backtracking for contradiction handling."
+  (loop repeat max-attempts do
+    (let ((working-grid (copy-grid grid))
+          (width (array-dimension grid 0))
+          (height (array-dimension grid 1))
+          (success t))
+      (loop repeat (* width height)
+            do (let* ((uncollapsed (uncollapsed-cells working-grid width height)))
+                 (when (null uncollapsed)
+                   (return-from wave-function-collapse working-grid))
+                 (let* ((candidates (min-entropy-candidates working-grid uncollapsed))
+                        (chosen (nth (random (length candidates)) candidates))
+                        (x (first chosen))
+                        (y (second chosen))
+                        (cell (get-cell working-grid x y)))
+                   ;; Check for contradiction BEFORE collapse
+                   (when (= (length (cell-possible-values cell)) 0)
+                     (when on-contradiction
+                       (funcall on-contradiction working-grid x y cell))
+                     (setf success nil)
+                     (return)) ; Break out of inner loop to retry
+                   
+                   (let ((collapsed-value (funcall collapse-fn cell weights)))
+                     (when on-collapse (funcall on-collapse working-grid x y cell collapsed-value)))
+                   
+                   (funcall propagate-fn working-grid x y :neighbor-fn neighbor-fn :remove-fn remove-fn)
+                   (when on-propagate (funcall on-propagate working-grid x y cell)))))
+      (when success (return-from wave-function-collapse working-grid)))
+    finally (error "Failed to generate valid grid after ~A attempts" max-attempts)))
 
 ;; Example usage:
 ;; (let ((grid (make-initial-grid 10 10 *biomes*)))
