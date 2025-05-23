@@ -1,6 +1,3 @@
-(defpackage :vibe-knight
-  (:use :cl :sdl2)
-  (:local-nicknames (:v :org.shirakumo.verbose)))
 (in-package :vibe-knight)
 
 (defvar *gamepad* nil
@@ -50,6 +47,7 @@
                    (declare (ignore c))
                    (sdl2:push-quit-event))))
   (defun main ()
+    (v:restart-global-controller)
     (handler-case
         (progn
           (setup-game)
@@ -59,6 +57,7 @@
 
 #-sbcl
 (defun main ()
+  (v:restart-global-controller)
   (handler-case
       (progn
         (setup-game)

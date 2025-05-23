@@ -1,11 +1,15 @@
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-                                       (user-homedir-pathname))))
+                                        (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
 (ql:quickload :asdf)
 (push (truename ".") asdf:*central-registry*)
 #+asdf (pushnew (truename "./src") asdf:*central-registry*)
+
+;; Explicitly load PROVE testing framework
+(ql:quickload :prove)
+
 (ql:quickload :vibe-knight)
 
 

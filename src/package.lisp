@@ -9,3 +9,6 @@
            :wave-function-collapse
            :get-cell
            :cell-collapsed-biome))
+
+(defpackage :vibe-knight/world-test
+  (:use :cl :prove :vibe-knight))
