@@ -2,6 +2,8 @@
 
 A 2D roguelike game in Common Lisp using SDL2, inspired by Zelda 3.
 
+**Author:** Jim Hansson
+
 ## Structure
 - `src/` – all source code
 - `doc/` – documentation
@@ -30,6 +32,12 @@ A 2D roguelike game in Common Lisp using SDL2, inspired by Zelda 3.
    # This creates an executable named 'vibe-knight' in the project folder
    ./vibe-knight
    ```
+
+4. **Run tests (no SDL2 required):**
+   ```bash
+   make test
+   ```
+   This will run all unit tests, loading all necessary files. SDL2 is not required for running tests.
 
 ## Using Roswell for Common Lisp Development
 

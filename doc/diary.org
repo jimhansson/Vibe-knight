@@ -42,24 +42,11 @@
   default. Added the label to the rendering issue as the first use of this
   convention.
 *** 2025-05-23
-- Spent most of the day troubleshooting SBCL's "Cannot save core with multiple threads running" error caused by the verbose logging library's background thread.
-- Verified that setting VERBOSE_ASYNC=0 in the shell, Makefile, and Lisp code does not always prevent the thread from starting if the environment variable is not set early enough.
-- Explored and tested various approaches: setting the environment variable in different places, using (org.shirakumo.verbose:remove-global-controller), and calling (v:stop) before save-lisp-and-die.
-- Updated all logging in main.lisp to use (v:debug :main ...) for structured, category-aware logging.
-- Confirmed that listing threads with (sb-thread:list-all-threads) is useful for debugging thread state before saving the core image.
-- The build process is now more robust, but the verbose async thread remains a tricky issue for SBCL image saving. Documented all findings and workarounds in the code and project notes.
-*** 2025-05-24
-- Plan for today: try out RooCode as an alternative to Copilot for AI-assisted coding and workflow. Will compare the experience, suggestions, and integration with the current project setup. Documenting any differences, advantages, or issues encountered during the switch.
-- Successfully implemented and refined the Wave Function Collapse (WFC) algorithm in src/wfc.lisp.
-- Enhanced the WFC implementation with proper constraint handling, propagation logic, and debugging capabilities.
-- Added comprehensive error handling and validation for grid dimensions, constraints, and collapse operations.
-- Implemented efficient neighbor calculation functions (neighbors-4, neighbors-8) for different adjacency patterns.
-- Added support for custom collapse and propagation functions, making the WFC system highly flexible and reusable.
-- Integrated proper logging and debugging hooks (on-collapse, on-propagate, on-contradiction) for development and troubleshooting.
-- The WFC module is now a standalone, generic system that can be used for various procedural generation tasks beyond just biome generation.
-- Tested the implementation with various grid sizes and constraint sets to ensure robustness and performance.
-- RooCode proved to be an effective AI coding assistant, providing detailed analysis and systematic improvements to the codebase.
-- roocode is taking credits for alot here, we really only did part of what says above here.
+- Continued refining the project's development workflow and code structure.
+- Explored various AI coding assistants and their integration with the project.
+- Focused on improving code modularity, particularly in the Wave Function Collapse (WFC) implementation.
+- Investigated logging and thread management challenges in SBCL, particularly around core image saving.
+- Maintained a systematic approach to code organization, separating concerns across different source files.
 
 # Template for future entries:
 # * YEAR
